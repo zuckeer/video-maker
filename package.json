@@ -17,6 +17,11 @@
   },
   "homepage": "https://github.com/zuckeer/video-maker#readme",
   "dependencies": {
-    "readline-sync": "^1.4.10"
+    "rss-parser": "^3.6.3",
+    "superagent": "^4.1.0",
+    "unidecode": "^0.1.8",
+    "algorithmia": "^0.3.10",
+    "readline-sync": "^1.4.10",
+    "sbd": "^1.0.19"
   }
 }
