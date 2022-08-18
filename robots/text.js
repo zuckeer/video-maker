@@ -2,10 +2,14 @@
 // const algorithmiaApiKey = require('../credentials/algorithmia.json').apiKey
 const sentenceBoundaryDetection = require('sbd')
 
-async function Text(content) {
+const state = require('./state.js')
+
+async function robot() {
+    const content = state.load()
     // await fetchContentFromWikipedia(content)
     sanitizeContent(content)
     breakContentIntoSentences(content)
+    state.save(content)
     console.log('Build Sentences')
 
     /*
@@ -85,7 +89,7 @@ async function Text(content) {
 
 }
 
-module.exports = Text
+module.exports = robot //Text
 /******************************
 const algorithmia = require('algorithmia')
 const algorithmiaApiKey = require('../credentials/algorithmia.json').apiKey
