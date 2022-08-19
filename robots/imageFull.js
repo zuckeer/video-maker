@@ -14,7 +14,7 @@ async function robot() {
     // process.exit(0)
     async function fetchImagesOfAllSentences(content) {  //o original eh fetchImagesOfAllSentences
         for (const sentence of content.sentences) { //o original eh content.sentences
-            const query = '${content.searchTerm} ${sentence.keywords[0]}'
+            const query = '${content.searchTerm} ${sentence.keywords[0]}' //essa é a sentenca q monta a busca com as keywords
             sentence.images = await fetchGoogleAndReturnImageLinks(query)
 
             sentence.googleSearchQuery = query
