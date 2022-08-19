@@ -5,10 +5,13 @@ const sentenceBoundaryDetection = require('sbd')
 const state = require('./state.js')
 
 async function robot() {
+    console.log('> [text-robot] Starting...')
     const content = state.load()
-    // await fetchContentFromWikipedia(content)
+    console.log(content)
+ 
     sanitizeContent(content)
     breakContentIntoSentences(content)
+    limitMaximumSentences(content)
     state.save(content)
     console.log('Build Sentences')
 
@@ -51,6 +54,7 @@ async function robot() {
     function sanitizeContent(content) {
         const withoutBlankLinesAndMarkdown = removeBlankLinesAndMarkdown(content.wikiPediaContent.content)// content.sourceContentOriginal)
         const withoutDatesInParentheses = removeDatesInParentheses(withoutBlankLinesAndMarkdown)
+        console.log(content)
 
         //content.sourceContentSanitized = withoutDatesInParentheses
         content.wikiPediaContent.sourceContentSanitized = withoutDatesInParentheses
@@ -60,13 +64,13 @@ async function robot() {
 
             const withoutBlankLinesAndMarkdown = allLines.filter((line) => {
                 if (line.trim().length === 0 || line.trim().startsWith('=')) {
-                return false
+                    return false
                 }
 
-            return true
-        })
-        
-        return withoutBlankLinesAndMarkdown.join(' ')
+                return true
+            })
+
+            return withoutBlankLinesAndMarkdown.join(' ')
         }
     }
 
@@ -86,10 +90,13 @@ async function robot() {
             })
         })
     }
+    function limitMaximumSentences(content) {
+        content.sentences = content.sentences.slice(0, content.maximumSentences)
+    }
 
 }
 
-module.exports = robot //Text
+module.exports = robot
 /******************************
 const algorithmia = require('algorithmia')
 const algorithmiaApiKey = require('../credentials/algorithmia.json').apiKey
