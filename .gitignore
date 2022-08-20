@@ -108,3 +108,5 @@ credentials/*.json
 
 # Content
 content.json
+content/
+.DS_Store
