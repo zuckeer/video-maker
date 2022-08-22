@@ -7,15 +7,15 @@ const robots = {
 
 async function start(){
 
-  await robots.input()
-  await robots.text()
+  //await robots.input()
+  //await robots.text()
   console.log('Chamando robot de imagens...')
   await robots.image()
 
   //console.log('To the next step...')
   //console.log('Exiting Program...')
-  const content = robots.state.load()
-  console.dir(content, { depth: null})
+  //const content = robots.state.load()
+  //console.dir(content, { depth: null})
 }
 
 start()
